@@ -31,7 +31,7 @@ router.get(`/exchanges`, (req, res) => {
   res.send({
     success: true,
     error: null,
-    result: ccxt.exchanges
+    result: req.query.all !== undefined ? ccxt.exchanges : [`binance`, `bitfinex`, `bittrex`, `coss`, `kraken`, `kucoin`, `poloniex`, `theocean`, `upbit`]
   });
 });
 

@@ -13,5 +13,5 @@ if (!!process.env.LAMBDA_TASK_ROOT) {
 
   exports.main = (event, context) => serverlessExpress.proxy(server, event, context);
 } else {
-  app.listen(3000, () => console.log(`Listening on 3000`));
+  app.listen(8000, () => console.log(`Listening on 8000`));
 }
