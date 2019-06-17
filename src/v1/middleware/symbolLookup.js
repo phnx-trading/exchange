@@ -8,6 +8,8 @@ const symbolLookup = (req, res, next) => {
   let symbol = `${ req.params.primary }/${ req.params.quote }`;
 
   req.exchangeClient.loadMarkets().then((markets) => {
+    symbol = Object.keys(markets).find((m) => m.toLowerCase() == symbol.toLowerCase());
+
     if (!markets.hasOwnProperty(symbol)) {
       res.send({
         success: false,
