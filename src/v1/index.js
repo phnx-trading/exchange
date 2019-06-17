@@ -13,6 +13,20 @@ const router = express.Router();
 
 router.use(bodyParser.json());
 
+router.use((req, res, next) => {
+  try {
+    let origin = req.get(`origin`);
+    
+    if (JSON.parse(process.env.ALLOWED_FRONTEND_HOSTS).includes(origin)) {
+      res.set(`Access-Control-Allow-Origin`, origin);
+    }
+
+    next();
+  } catch(e) {
+    next();
+  }
+});
+
 router.get(`/exchanges`, (req, res) => {
   res.send({
     success: true,
